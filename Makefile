@@ -1,4 +1,4 @@
-.PHONY: all clean
+.PHONY: all clean cli
 
 all: dns.exe wild-le.exe
 
@@ -9,6 +9,10 @@ dns.exe: cmd/dns/main.go
 wild-le.exe: cmd/wild-le/main.go
 	sh -c "cd cmd/wild-le; sh ../../mk.sh"
 	mv cmd/wild-le/*.exe .
+
+cli:
+	sh -c "cd cmd/dns; sh ../../get.sh"
+	sh -c "cd cmd/wild-le; sh ../../get.sh"
 
 clean:
 	rm -f *.exe
